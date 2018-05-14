@@ -10,7 +10,11 @@ class Autologin
      */
     function credentials()
     {
-        return array($_ENV['MYSQL_HOST'], 'root', $_ENV['MYSQL_ROOT_PASSWORD']);
+        $host = isset($_ENV['MYSQL_HOST']) ? $_ENV['MYSQL_HOST'] : 'mysql';
+        $user = 'root';
+        $pass = $_ENV['MYSQL_ROOT_PASSWORD'];
+
+        return array($host, $user, $pass);
     }
 
     /**
@@ -18,7 +22,7 @@ class Autologin
      */
     function database()
     {
-        return $_ENV['MYSQL_DATABASE'];
+        return isset($_ENV['MYSQL_DATABASE']) ? $_ENV['MYSQL_DATABASE'] : '';
     }
 
     /**
@@ -26,18 +30,27 @@ class Autologin
      */
     function loginForm()
     {
+        $host = isset($_ENV['MYSQL_HOST']) ? $_ENV['MYSQL_HOST'] : 'mysql';
+        $user = 'root';
+        $pass = $_ENV['MYSQL_ROOT_PASSWORD'];
+        $name = isset($_ENV['MYSQL_DATABASE']) ? $_ENV['MYSQL_DATABASE'] : '';
         ?>
         <table cellspacing="0">
             <select name='auth[driver]'><option value="server" selected>MySQL</select>
-            <tr><th>Server<td><input name="auth[server]" value="<?=$_ENV['MYSQL_HOST']?>" title="hostname[:port]" autocapitalize="off">
-            <tr><th>Username<td><input name="auth[username]" id="username" value="<?='root'?>" autocapitalize="off">
-            <tr><th>Password<td><input type="password" name="auth[password]" value="<?=$_ENV['MYSQL_ROOT_PASSWORD']?>">
-            <tr><th>Database<td><input name="auth[db]" value="<?=$_ENV['MYSQL_DATABASE']?>" autocapitalize="off" placeholder="WordPress">
+            <tr><th>Server<td><input name="auth[server]" value="<?=$host?>" title="hostname[:port]" autocapitalize="off">
+            <tr><th>Username<td><input name="auth[username]" id="username" value="<?=$user?>" autocapitalize="off">
+            <tr><th>Password<td><input type="password" name="auth[password]" value="<?=$pass?>">
+            <tr><th>Database<td><input name="auth[db]" value="<?=$name?>" autocapitalize="off" placeholder="Database">
         </table>
         <p><input id="submit-button" type="submit" value="<?php echo lang('Login'); ?>">
-        <script>document.getElementById("submit-button").click()</script>
+        <script>
+            setTimeout(function() {
+                document.getElementById("submit-button").click()
+            }, 1000);
+        </script>
         <?php
         echo checkbox("auth[permanent]", 1, $_COOKIE["adminer_permanent"], lang('Permanent login')) . "\n";
+
         return true;
     }
 }

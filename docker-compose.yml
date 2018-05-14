@@ -1,0 +1,20 @@
+version: '3.1'
+
+services:
+
+  adminer:
+    build: .
+    env_file:
+      - ./system.env
+    ports:
+      - 7777:8080
+    links:
+      - mysql
+    restart: "no"
+
+  mysql:
+    image: mysql:5.7
+    env_file:
+      - ./system.env
+    restart: "no"
+

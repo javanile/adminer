@@ -1,2 +1,3 @@
 .git
 deploy.sh
+docker-compose.yml
