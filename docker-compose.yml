@@ -16,5 +16,7 @@ services:
     image: mysql:5.7
     env_file:
       - docker-compose.env
+    environment:
+      - MYSQL_ROOT_PASSWORD=P4$$w0rd
     restart: "no"
 
