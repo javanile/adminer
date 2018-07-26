@@ -5,7 +5,7 @@ services:
   adminer:
     build: .
     env_file:
-      - ./system.env
+      - docker-compose.env
     ports:
       - 7777:8080
     links:
@@ -15,6 +15,6 @@ services:
   mysql:
     image: mysql:5.7
     env_file:
-      - ./system.env
+      - docker-compose.env
     restart: "no"
 
