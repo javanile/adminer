@@ -7,7 +7,9 @@ higher performance and more security.
 
 ```yaml
 version: '3'
+
 services:
+
   adminer:
     image: javanile/adminer
     environment: 
