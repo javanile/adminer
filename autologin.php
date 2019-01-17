@@ -1,11 +1,12 @@
 <?php
 /**
- * Class Autologin
+ * autologin plugin for adminer
  */
-
-class Autologin
+return new class
 {
     /**
+     * Get credentials from environment variables.
+     *
      * @return array
      */
     function credentials()
@@ -19,11 +20,13 @@ class Autologin
             $pass = isset($_ENV['MYSQL_PASSWORD']) ? $_ENV['MYSQL_PASSWORD'] : '';
         }
 
-        return array($host, $user, $pass);
+        return [$host, $user, $pass];
     }
 
     /**
-     * @return mixed
+     * Get current database name from environment variable.
+     *
+     * @return string
      */
     function database()
     {
@@ -31,6 +34,8 @@ class Autologin
     }
 
     /**
+     * Print login form with autologin javascript.
+     *
      * @return bool
      */
     function loginForm()
@@ -72,7 +77,4 @@ class Autologin
 
         return true;
     }
-}
-
-// return singleton module
-return new Autologin();
+};
