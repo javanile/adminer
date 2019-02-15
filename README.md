@@ -6,7 +6,7 @@
 Replace phpMyAdmin with Adminer and you will get a tidier user interface, better support for MySQL features, 
 higher performance and more security.
 
-## Usage in docker-compose.yml
+## Use docker-compose.yml
 
 ```yaml
 version: '3'
@@ -28,4 +28,9 @@ services:
       - MYSQL_ROOT_PASSWORD=P4$$w0rd
 ```
 
+## Use command-line
+
+```bash
+$ docker run --rm -p 7777:8080 javanile/adminer
+```
 
