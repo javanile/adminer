@@ -2,37 +2,7 @@
 /**
  * autologin plugin for adminer
  */
-return new class
-{
-    /**
-     * Get credentials from environment variables.
-     *
-     * @return array
-     */
-    function credentials()
-    {
-        $host = isset($_ENV['MYSQL_HOST']) ? $_ENV['MYSQL_HOST'] : 'mysql';
-        if (isset($_ENV['MYSQL_ROOT_PASSWORD'])) {
-            $user = 'root';
-            $pass = $_ENV['MYSQL_ROOT_PASSWORD'];
-        } else {
-            $user = isset($_ENV['MYSQL_USER']) ? $_ENV['MYSQL_USER'] : 'root';
-            $pass = isset($_ENV['MYSQL_PASSWORD']) ? $_ENV['MYSQL_PASSWORD'] : '';
-        }
-
-        return [$host, $user, $pass];
-    }
-
-    /**
-     * Get current database name from environment variable.
-     *
-     * @return string
-     */
-    function database()
-    {
-        return isset($_ENV['MYSQL_DATABASE']) ? $_ENV['MYSQL_DATABASE'] : '';
-    }
-
+return new class {
     /**
      * Print login form with autologin javascript.
      *
@@ -67,6 +37,7 @@ return new class
         echo checkbox("auth[permanent]", 1, $_COOKIE["adminer_permanent"], lang('Permanent login'));
         if (!$once) {
             ?>
+            <input type="hidden" name="autologin" value="disabled">
             <script <?=nonce()?> type="text/javascript">
                 setTimeout(function() {
                     document.getElementById("submit-button").click()

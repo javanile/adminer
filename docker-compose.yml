@@ -5,10 +5,15 @@ services:
   adminer:
     build: .
     env_file: ['.services.env']
+    volumes: ['./autologin.php:/var/www/html/plugins-enabled/autologin.php']
     ports: ['7777:8080']
     links: ['mysql']
 
   mysql:
     image: mysql:5.7
     env_file: ['.services.env']
-    environment: ['MYSQL_ROOT_PASSWORD=P4$$w0rd']
+    volumes: ['mysql:/var/lib/mysql']
+    environment: ['MYSQL_ROOT_PASSWORD=password']
+
+volumes:
+  mysql:
