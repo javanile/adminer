@@ -1,3 +1,4 @@
+.idea/
 .git/
 .services.env
 docker-compose.yml
