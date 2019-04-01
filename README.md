@@ -4,10 +4,10 @@
 [![](https://images.microbadger.com/badges/image/javanile/adminer.svg)](https://hub.docker.com/r/javanile/adminer)
 [![](https://images.microbadger.com/badges/version/javanile/adminer.svg)](https://hub.docker.com/r/javanile/adminer)
 
-Replace phpMyAdmin with Adminer and you will get a tidier user interface, better support for MySQL features, 
-higher performance and more security.
+Replace phpMyAdmin with Adminer and you will get a tidier user interface,  
+better support for MySQL features, higher performance and more security.
 
-## Use docker-compose.yml
+## Use with `docker-compose.yml`
 
 ```yaml
 version: '3'
@@ -29,7 +29,7 @@ services:
       - MYSQL_ROOT_PASSWORD=secret
 ```
 
-## Use command-line
+## Command-line usage
 
 ```bash
 $ docker run --rm -p 8080:8080 javanile/adminer
@@ -40,3 +40,4 @@ $ docker run --rm -p 8080:8080 javanile/adminer
 * Support for WordPress environment variables
 * Support for MongoDB environment variables
 * Support for DB_* environment variables
+* Add Travis CI and testing pipeline
