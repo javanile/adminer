@@ -1,14 +1,14 @@
 <?php
 /**
- * autologin plugin for adminer
+ * autologin plugin for adminer.
  */
-return new class {
+return new class() {
     /**
      * Print login form with autologin javascript.
      *
      * @return bool
      */
-    function loginForm()
+    public function loginForm()
     {
         $once = isset($_SESSION['once-autologin']) ? $_SESSION['once-autologin'] : false;
         $_SESSION['once-autologin'] = true;
@@ -21,8 +21,7 @@ return new class {
         } else {
             $user = isset($_ENV['MYSQL_USER']) ? $_ENV['MYSQL_USER'] : 'root';
             $pass = isset($_ENV['MYSQL_PASSWORD']) ? $_ENV['MYSQL_PASSWORD'] : '';
-        }
-        ?>
+        } ?>
 
         <table cellspacing="0">
             <select name='auth[driver]'><option value="server" selected>MySQL</select>
@@ -34,7 +33,7 @@ return new class {
         <p><input id="submit-button" type="submit" value="<?php echo lang('Login'); ?>">
 
         <?php
-        echo checkbox("auth[permanent]", 1, $_COOKIE["adminer_permanent"], lang('Permanent login'));
+        echo checkbox('auth[permanent]', 1, $_COOKIE['adminer_permanent'], lang('Permanent login'));
         if (!$once) {
             ?>
             <input type="hidden" name="autologin" value="disabled">
