@@ -1,11 +1,11 @@
 #!/bin/bash
-export NEORX_LABEL="adminer"
+export neorx_label=adminer
 
 ##
 # neo(rx) file
 ##
 
-case "${NEORX_COMMAND}" in
+case "${neorx_command}" in
   run)  docker run --rm --name adminer -p 8080:8080 javanile/adminer ;;
   stop) docker stop adminer ;;
   *)    echo "Undefined command, use: run, stop." ;;
