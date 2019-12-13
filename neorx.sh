@@ -1,6 +1,9 @@
 #!/bin/bash
 export NEORX_LABEL="adminer"
-set -x
+
+##
+# neo(rx) file
+##
 
 case "${NEORX_COMMAND}" in
   run)  docker run --rm --name adminer -p 8080:8080 javanile/adminer ;;
