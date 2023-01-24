@@ -10,18 +10,26 @@ return new class() {
      */
     public function loginForm()
     {
-        $once = isset($_SESSION['once-autologin']) ? $_SESSION['once-autologin'] : false;
+        $once = $_SESSION['once-autologin'] ?? false;
         $_SESSION['once-autologin'] = true;
 
-        $host = isset($_ENV['MYSQL_HOST']) ? $_ENV['MYSQL_HOST'] : 'mysql';
-        $name = isset($_ENV['MYSQL_DATABASE']) ? $_ENV['MYSQL_DATABASE'] : '';
-        if (isset($_ENV['MYSQL_ROOT_PASSWORD'])) {
-            $user = 'root';
-            $pass = $_ENV['MYSQL_ROOT_PASSWORD'];
+        if (isset($_ENV['SA_PASSWORD']) || isset($_ENV['MSSQL_SA_PASSWORD'])) {
+            $host = $_ENV['MSSQL_HOST'] ?? 'mssql';
+            $name = $_ENV['MSSQL_DATABASE'] ?? '';
+            $user = 'sa';
+            $pass = $_ENV['SA_PASSWORD'] ?? $_ENV['MSSQL_SA_PASSWORD'];
         } else {
-            $user = isset($_ENV['MYSQL_USER']) ? $_ENV['MYSQL_USER'] : 'root';
-            $pass = isset($_ENV['MYSQL_PASSWORD']) ? $_ENV['MYSQL_PASSWORD'] : '';
-        } ?>
+            $host = $_ENV['MYSQL_HOST'] ?? 'mysql';
+            $name = $_ENV['MYSQL_DATABASE'] ?? '';
+            if (isset($_ENV['MYSQL_ROOT_PASSWORD'])) {
+                $user = 'root';
+                $pass = $_ENV['MYSQL_ROOT_PASSWORD'];
+            } else {
+                $user = $_ENV['MYSQL_USER'] ?? 'root';
+                $pass = $_ENV['MYSQL_PASSWORD'] ?? '';
+            }
+        }
+        ?>
 
         <table cellspacing="0">
             <select name='auth[driver]'><option value="server" selected>MySQL</select>

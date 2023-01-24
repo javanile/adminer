@@ -1,4 +1,6 @@
 .idea/
+.vscode/
+docs/
 .git/
-.services.env
+.env
 docker-compose.yml

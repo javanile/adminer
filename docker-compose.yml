@@ -4,16 +4,23 @@ services:
 
   adminer:
     build: .
-    env_file: ['.services.env']
+    env_file: ['.env']
     volumes: ['./autologin.php:/var/www/html/plugins-enabled/autologin.php']
     ports: ['7777:8080']
     links: ['mysql']
 
   mysql:
     image: mysql:5.7
-    env_file: ['.services.env']
+    env_file: ['.env']
     volumes: ['mysql:/var/lib/mysql']
+    environment: ['MYSQL_ROOT_PASSWORD=password']
+
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2017-CU20-ubuntu-16.04
+    env_file: ['.env']
+    volumes: ['mssql:/var/opt/mssql/data']
     environment: ['MYSQL_ROOT_PASSWORD=password']
 
 volumes:
   mysql:
+  mssql:
