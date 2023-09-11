@@ -1,3 +1,13 @@
+<div align="center">
+
+# ⭐ Give me a star, please! ⭐
+
+<img src="https://raw.githubusercontent.com/francescobianco/gif/main/images/give-stars-h192.gif" /><img src="https://raw.githubusercontent.com/francescobianco/gif/main/images/push-button-h192.gif" />
+
+</div>
+
+---
+
 # javanile/adminer
 
 [![StyleCI](https://github.styleci.io/repos/132001150/shield?branch=master)](https://github.styleci.io/repos/132001150)
