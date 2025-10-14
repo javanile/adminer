@@ -1,11 +1,9 @@
-version: '3.1'
-
 services:
 
   adminer:
     build: .
     env_file: ['.env']
-    volumes: ['./autologin.php:/var/www/html/plugins-enabled/autologin.php']
+    #volumes: ['./autologin.php:/var/www/html/plugins-enabled/autologin.php']
     ports: ['7777:8080']
     links: ['mysql']
 
